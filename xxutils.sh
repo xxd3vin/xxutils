@@ -26,7 +26,7 @@ function rcmdfile()
 {
     local ip="$1"
     local cmdfile="$2"
-    local remotedir=$( gettmpdir "rcmdfile" )
+    local remotedir=$( gettmpdir "rcmdfile" 0 )
     rcmd $ip "mkdir -p $remotedir"
     scp -o ConnectTimeout=8 -o StrictHostKeyChecking=no "$cmdfile" chenyang@$ip:$remotedir/$cmdfile
     rcmd $ip "chmod a+x $remotedir/$remotefile ; $remote/$cmdfile"
@@ -36,12 +36,18 @@ function rcmdfile()
 # Purpose: Generate random name dir in /tmp.
 # Arguments:
 #   $1 -> Dir name prefix.
+#   $2 -> If 0, dont make dir.
 # Return: dir name
 ##################################################################
 function gettmpdir()
 {
     local remotedir="/tmp/$1_$RANDOM$RANDOM$RANDOM$RANDOM$RANDOM$RANDOM"
-    mkdir -p $remotedir
+    if [ $2 = 0 ];
+    then
+        # do nothing
+    else
+        mkdir -p $remotedir
+    fi
     echo $remotedir
 }
 
