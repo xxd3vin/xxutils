@@ -42,7 +42,7 @@ function rcmdfile()
 function gettmpdir()
 {
     local remotedir="/tmp/$1_$RANDOM$RANDOM$RANDOM$RANDOM$RANDOM$RANDOM"
-    if [ $2 -ne 0 ];
+    if [ "X$2" != "X0" ];
     then
         mkdir -p $remotedir
     fi
