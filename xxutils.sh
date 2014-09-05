@@ -32,9 +32,10 @@ function getusers()
 # Arguments:
 #   $1 -> Email subject.
 #   $2 -> Email body.
+#   $3 -> Email to who.
 # Return: NO
 ##################################################################
 function xsendmail()
 {
-    echo -e "$2" | mail -s "$1" glue@spolo.org -a "From: Hudson <ci@spolo.org>"
+    echo -e "$2" | mail -s "$1" "$3" -a "From: Hudson <ci@spolo.org>"
 }
