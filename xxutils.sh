@@ -28,6 +28,7 @@ function getusers()
 
 ##################################################################
 # Purpose: Send email from ci@spolo.org
+#          Consider use ssmtp program to send mail.
 # Arguments:
 #   $1 -> Email subject.
 #   $2 -> Email body.
