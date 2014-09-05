@@ -16,6 +16,35 @@ function rcmd()
 }
 
 ##################################################################
+# Purpose: Send file to remote, and run it on remote.
+# Arguments:
+#   $1 -> IP of remote server.
+#   $2 -> File with command to be executed.
+# Return: 0(True) or 1(False)
+##################################################################
+function rcmdfile()
+{
+    local ip="$1"
+    local cmdfile="$2"
+    local remotedir=$( gettmpdir "rcmdfile" )
+    scp -o ConnectTimeout=8 -o StrictHostKeyChecking=no "$cmdfile" chenyang@$ip:$remotedir/$cmdfile
+    ssh -t -t -o ConnectTimeout=8 -o StrictHostKeyChecking=no chenyang@$ip "chmod a+x $remotedir/$remotefile ; $remote/$cmdfile" && return 0 || return 1 </dev/null
+}
+
+##################################################################
+# Purpose: Generate random name dir in /tmp.
+# Arguments:
+#   $1 -> Dir name prefix.
+# Return: dir name
+##################################################################
+function gettmpdir()
+{
+    local remotedir="/tmp/$1_$RANDOM$RANDOM$RANDOM$RANDOM$RANDOM$RANDOM"
+    mkdir -p $remotedir
+    echo $remotedir
+}
+
+##################################################################
 # Purpose: Get all developers in glue project.
 #          Since all developers have put their name in wiki, we
 #          will filter out their name from wiki txt.
