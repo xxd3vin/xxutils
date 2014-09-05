@@ -29,7 +29,7 @@ function rcmdfile()
     local remotedir=$( gettmpdir "rcmdfile" 0 )
     rcmd $ip "mkdir -p $remotedir"
     scp -o ConnectTimeout=8 -o StrictHostKeyChecking=no "$cmdfile" chenyang@$ip:$remotedir/$cmdfile
-    rcmd $ip "chmod a+x $remotedir/$remotefile ; $remote/$cmdfile"
+    rcmd $ip "chmod a+x $remotedir/$cmdfile ; $remotedir/$cmdfile"
 }
 
 ##################################################################
