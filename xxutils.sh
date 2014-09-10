@@ -75,3 +75,25 @@ function xsendmail()
 {
     echo -e "$2" | mail -s "$1" "$3" -a "From: Hudson <ci@spolo.org>"
 }
+
+##################################################################
+# Purpose: Print log to file.
+# Env:
+#   $XLOG_SHELLNAME: Shell script name.
+#   $XLOG_LOGNAME: Absoluted path of log file.
+# Arguments:
+#   $1 -> Log message.
+# Return: NO
+##################################################################
+function xlog()
+{
+    if [ "X$XLOG_SHELLNAME" = "X" ]
+    then
+        XLOG_SHELLNAME="/tmp/xlog.default.log"
+    fi
+    if [ "X$XLOG_LOGNAME" = "X" ]
+    then
+        XLOG_LOGNAME="xlog.default.sh"
+    fi
+    echo "`date +"%Y-%m-%d %T"` [$XLOG_SHELLNAME] $1" >> $XLOG_LOGNAME
+}
