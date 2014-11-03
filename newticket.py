@@ -47,6 +47,8 @@ parser.add_option("-s", "--summary", dest="summary",
                   help="ticket summary")
 parser.add_option("-d", "--description", dest="description",
                   help="ticket description")
+parser.add_option("-c", "--cc", dest="cc",
+                  help="ticket cc")
 
 (options, args) = parser.parse_args()
 
@@ -65,7 +67,7 @@ t = Ticket(open_environment(TRAC_ENV))
 
 info = dict(
     status=T_STATUS, 
-    owner=options.owner, reporter=options.reporter,
+    owner=options.owner, reporter=options.reporter, cc=options.cc,
     milestone=T_MILESTONE, type=options.type,
     summary=options.summary.decode(sys.getfilesystemencoding()),
     description = options.description.decode(sys.getfilesystemencoding())
