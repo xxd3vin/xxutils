@@ -30,7 +30,7 @@ function rcmdfile()
     local remotepath="$remotedir/`basename $localpath`"
     rcmd $ip "mkdir -p $remotedir"
     scp -o ConnectTimeout=8 -o StrictHostKeyChecking=no "$localpath" chenyang@$ip:$remotepath
-    rcmd $ip "chmod a+x $remotepath ; $remotepath"
+    rcmd $ip "chmod a+x $remotepath ; bash -ex $remotepath"
 }
 
 ##################################################################
