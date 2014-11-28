@@ -19,17 +19,18 @@ function rcmd()
 # Purpose: Send file to remote, and run it on remote.
 # Arguments:
 #   $1 -> IP of remote server.
-#   $2 -> File with command to be executed.
+#   $2 -> The path of the file with command to be executed.
 # Return: 0(True) or 1(False)
 ##################################################################
 function rcmdfile()
 {
     local ip="$1"
-    local cmdfile="$2"
+    local localpath="$2"
     local remotedir=$( gettmpdir "rcmdfile" 0 )
+    local remotepath="$remotedir/`basename $localpath`"
     rcmd $ip "mkdir -p $remotedir"
-    scp -o ConnectTimeout=8 -o StrictHostKeyChecking=no "$cmdfile" chenyang@$ip:$remotedir/$cmdfile
-    rcmd $ip "chmod a+x $remotedir/$cmdfile ; $remotedir/$cmdfile"
+    scp -o ConnectTimeout=8 -o StrictHostKeyChecking=no "$localpath" chenyang@$ip:$remotepath
+    rcmd $ip "chmod a+x $remotepath ; $remotepath"
 }
 
 ##################################################################
