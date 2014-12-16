@@ -77,7 +77,7 @@ t.populate(info)
 num = t.insert()
 if not num:
     print >>sys.stderr, "Ticket not created"
-    print >>sys.stder, vals
+    print >>sys.stderr, vals
     sys.exit(1)
 
 print "Ticket #%d" % (num)
