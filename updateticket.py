@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 
 '''
-Add comment to a exist ticket
-Example : sudo python newcomment.py -i 11547 -c "54321" -a "ci"
+Update a exist ticket
+Example : sudo python updateticket.py -i 11547 -c "54321" -a "ci" -s "reopened"
 '''
 
 import os, sys
@@ -22,12 +22,14 @@ parser.add_option("-i", "--id", dest="id",
 parser.add_option("-c", "--comment", dest="comment",
                   help="ticket comment")
 parser.add_option("-a", "--author", dest="author",
-                  help="ticket comment author")
+                  help="ticket update author")
+parser.add_option("-s", "--status", dest="status",
+                  help="ticket status")
 
 (options, args) = parser.parse_args()
 
 #
-# begin to add comment to a ticket
+# begin to change a ticket
 #
 
 TRAC_ENV = os.environ.get('TRAC_ENV') or os.path.expanduser('/home/trac/glue')
@@ -39,10 +41,16 @@ from trac.env import open_environment
 from trac.ticket import Ticket
 t = Ticket(open_environment(TRAC_ENV), options.id, version=None)
 
+info = dict(
+    status=options.status
+)
+
+t.populate(info)
+
 num = t.save_changes(options.author, options.comment)
 if not num:
-    print >>sys.stderr, "Comment not added to ticket"
+    print >>sys.stderr, "Failed to update a exist ticket"
     sys.exit(1)
 
-print "Ticket %s add comment, comment:%d" % (options.id, num)
+print "Ticket %s updated, comment:%d" % (options.id, num)
 sys.exit(0)                 # all is well
