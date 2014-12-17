@@ -47,7 +47,7 @@ info = dict(
 
 t.populate(info)
 
-num = t.save_changes(options.author, options.comment)
+num = t.save_changes(options.author, unicode(options.comment, 'utf-8'))
 if not num:
     print >>sys.stderr, "Failed to update a exist ticket"
     sys.exit(1)
