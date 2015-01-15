@@ -90,11 +90,11 @@ function xlog()
 {
     if [ "X$XLOG_SHELLNAME" = "X" ]
     then
-        XLOG_SHELLNAME="/tmp/xlog.default.log"
+        XLOG_SHELLNAME="xlog.default.sh"
     fi
     if [ "X$XLOG_LOGNAME" = "X" ]
     then
-        XLOG_LOGNAME="xlog.default.sh"
+        XLOG_LOGNAME="/var/log/xlog.default.log"
     fi
     echo "`date +"%Y-%m-%d %T"` [$XLOG_SHELLNAME] $1" >> $XLOG_LOGNAME
 }
