@@ -1,0 +1,22 @@
+#!/bin/bash
+
+
+install_java_1_6()
+{
+  cd /tmp/
+  
+  wget -O /tmp/jdk-6u45-linux-x64.bin http://192.168.1.3/software/jdk-6u45-linux-x64.bin
+  chmod +x /tmp/jdk-6u45-linux-x64.bin
+  ./jdk-6u45-linux-x64.bin;
+  mkdir -p /usr/java
+  mv /tmp/jdk1.6.0_45 /usr/java;
+  rm -f /usr/java/latest;      
+  ln -s /usr/java/jdk1.6.0_45 /usr/java/latest; 
+  rm -f /usr/java/default;
+  ln -s /usr/java/jdk1.6.0_45 /usr/java/default;
+  rm -f /usr/bin/java
+  ln -s /usr/java/jdk1.6.0_45/bin/java /usr/bin/java
+  java -version
+  
+  cd -
+}
