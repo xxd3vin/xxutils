@@ -20,3 +20,15 @@ install_java_1_6()
   
   cd -
 }
+
+function installapacheUser()
+{
+   apache=`cat /etc/passwd | perl -ne "print $+ if /apache:x:(\d+):/"`
+   if [ "apache" == "48" ]; then
+     return 0
+   fi
+   if [ ! -z "apache" ]; then
+     userdel apache
+   fi
+   useradd -M -u 48 -U -d /var/www/html -o -r -s /sbin/nologin apache
+}
