@@ -1,5 +1,7 @@
 #!/bin/bash
 
+. functions
+
 # base system
 
 yum -y install wget
@@ -9,3 +11,5 @@ wget http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch
 rpm -ivh /tmp/epel-release-6-8.noarch.rpm
 
 install_java_1_6
+
+installapacheUser
