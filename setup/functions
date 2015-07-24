@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-install_java_1_6()
+function install_java_1_6()
 {
   cd /tmp/
   
@@ -31,4 +31,14 @@ function installapacheUser()
      userdel apache
    fi
    useradd -M -u 48 -U -d /var/www/html -o -r -s /sbin/nologin apache
+}
+
+function install_pgsql()
+{
+  yum install -y http://yum.postgresql.org/9.3/redhat/rhel-6-x86_64/pgdg-redhat93-9.3-1.noarch.rpm
+	yum install -y postgresql93-server postgresql93-contrib
+	service postgresql-9.3 initdb   ##初始化
+	chkconfig postgresql-9.3 on
+	#vim /var/lib/pgsql/9.3/data/pg_hba.conf   # ident to md5
+	/etc/init.d/postgresql-9.3 restart   #重启服务
 }
