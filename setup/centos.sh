@@ -13,3 +13,5 @@ rpm -ivh /tmp/epel-release-6-8.noarch.rpm
 install_java_1_6
 
 installapacheUser
+
+install_pgsql
