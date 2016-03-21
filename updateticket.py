@@ -23,6 +23,14 @@ parser.add_option("-c", "--comment", dest="comment",
                   help="ticket comment")
 parser.add_option("-a", "--author", dest="author",
                   help="ticket update author")
+parser.add_option("-C", "--component", dest="component",
+                  help="ticket component")
+parser.add_option("-m", "--milestone", dest="milestone",
+                  help="ticket milestone")
+parser.add_option("-o", "--owner", dest="owner",
+                  help="ticket owner")
+parser.add_option("-t", "--type", dest="type",
+                  help="ticket type")
 parser.add_option("-s", "--status", dest="status",
                   help="ticket status")
 
@@ -41,10 +49,26 @@ from trac.env import open_environment
 from trac.ticket import Ticket
 t = Ticket(open_environment(TRAC_ENV), options.id, version=None)
 
-info = dict(
-    status=options.status
-)
+info = dict()
 
+# is protected filed?
+if options.status is not None:
+  info["status"] = options.status
+
+# Component
+if options.component is not None:
+  info["component"] = unicode(options.component, 'utf-8')
+# Milestone
+if options.milestone is not None:
+  info["milestone"] = unicode(options.milestone, 'utf-8')
+# Owner
+if options.owner is not None:
+  info["owner"] = options.owner
+# Type
+if options.type is not None:
+  info["type"] = unicode(options.type, 'utf-8')
+
+# Change ticket information
 t.populate(info)
 
 num = t.save_changes(options.author, unicode(options.comment, 'utf-8'))
