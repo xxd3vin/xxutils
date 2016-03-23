@@ -28,13 +28,13 @@ step2_list = [
 ]
 
 # DEBUG_START
-step2_name = "2. 大步骤"
-step2_list = [
-  "步骤1",
-  "步骤2",
-  "步骤3"
-]
-options["cc"] = "chenyang, chenyang"
+#step2_name = "2. 大步骤"
+#step2_list = [
+#  "步骤1",
+#  "步骤2",
+#  "步骤3"
+#]
+#options["cc"] = "chenyang, chenyang"
 # DEBUG_END
 
 print("- %s" % step2_name)
