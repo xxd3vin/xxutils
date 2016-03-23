@@ -12,7 +12,9 @@ options["reporter"] = "chenyang"
 options["owner"] = "chenyang"
 options["type"] = "task"
 options["description"] = ""
-options["cc"] = "masol, chenyang"
+
+# zhaojinpeng主要负责审查流程是否正确
+options["cc"] = "masol, chenyang, zhaojinpeng"
 
 # 2. 前期准备
 step2_name = "2. 前期准备"
