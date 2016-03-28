@@ -1,15 +1,18 @@
 #!/bin/bash
 
+script_name=$0
+
 ticket_list=(
 )
 
-#ticket_list=(
-#17912
-#)
+# debug ticket
+ticket_list=(
+18654
+)
 
 author="ci"
 component="wware后端"
-milestone="[wware] videoplayer.com 视频播放器"
+milestone=""
 #owner="chenyang"
 _type="动态化"
 
@@ -26,5 +29,5 @@ do
   #cmd="$cmd -t \"$_type\""
   #cmd="$cmd -s \"assigned\""
   #echo $cmd
-  sudo python updateticket.py -i $ticket_id -c "updateticket.py" -a "$author" -C "$component" -m "$milestone" -t "$_type"
+  sudo python updateticket.py -i $ticket_id -c "$script_name" -a "$author" -C "$component" -m "$milestone" -t "$_type"
 done

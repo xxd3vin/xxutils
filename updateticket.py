@@ -68,13 +68,18 @@ if options.owner is not None:
 if options.type is not None:
   info["type"] = unicode(options.type, 'utf-8')
 
+# Check empty comment
+if not options.comment:
+  print >>sys.stderr, "Not accept empty comment"
+  sys.exit(3)
+
 # Change ticket information
 t.populate(info)
 
 num = t.save_changes(options.author, unicode(options.comment, 'utf-8'))
 if not num:
-    print >>sys.stderr, "Failed to update a exist ticket"
-    sys.exit(1)
+  print >>sys.stderr, "Failed to update a exist ticket"
+  sys.exit(1)
 
 print "Ticket %s updated, comment:%d" % (options.id, num)
 sys.exit(0)                 # all is well
